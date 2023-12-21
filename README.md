@@ -36,46 +36,50 @@ Things you may want to cover:
 | first_name                 | string     | null: false               |
 | last_name_reading          | string     | null: false               |
 | first_name_reading         | string     | null: false               |
+| buy_id                     | string     | null: false               |
 
 ### Association
 - has_many :items
-- has_many :buy
+- has_many :buys
 
 ## itemsテーブル
 
-| Column            | Type       | Options                        |
-| ----------------- | ---------- | ------------------------------ |
-| explanation       | string     | null: false                    |
-| category_id       | integer    | null: false                    |
-| status_id         | integer    | null: false                    |
-| postage_id        | integer    | null: false, foreign_key: true |
-| address_id        | integer    | null: false, foreign_key: true |
-| number_of_days_id | integer    | null: false, foreign_key: true |
-| price             | integer    | null: false, foreign_key: true |
+| Column            | Type       | Options     |
+| ----------------- | ---------- | ----------- |
+| explanation       | string     | null: false |
+| category_id       | integer    | null: false |
+| status_id         | integer    | null: false |
+| postage_id        | integer    | null: false |
+| address_id        | integer    | null: false |
+| number_of_days_id | integer    | null: false |
+| price             | integer    | null: false |
 
 ### Association
-- has_one :buy
-- has_many :users
-- belongs_to :buy
+- has_one :buys
+- belongs_to :users
 
-## buyテーブル
+## buysテーブル
 
 | Column     | Type       | Options                        |
 | ---------- | ---------- | ------------------------------ |
-| users      | references | null: false, foreign_key: true |
-| items      | references | null: false, foreign_key: true |
-
+| user       | references | null: false, foreign_key: true |
+| item       | references | null: false, foreign_key: true |
 
 ### Association
-- belongs_to :address
+- belongs_to :user
+- belongs_to :item
 
-## addressテーブル
+## addressesテーブル
 
-| Column         | Type       | Options                        |
-| -------------- | ---------- | ------------------------------ |
-| post_code      | string     | null: false                    |
-| address_id     | string     | null: false                    |
-| city           | string     | null: false, foreign_key: true |
-| street_address | string     | null: false, foreign_key: true |
-| building       | string     | foreign_key: true              |
-| phone_number   | string     | null: false, foreign_key: true |
+| Column         | Type       | Options           |
+| -------------- | ---------- | ----------------- |
+| post_code      | string     | null: false       |
+| address_id     | string     | null: false       |
+| city           | string     | null: false       |
+| street_address | string     | null: false       |
+| building       | string     | foreign_key: true |
+| phone_number   | string     | null: false       |
+| card           | string     | null: false       |
+
+### Association
+- belongs_to :users
