@@ -36,27 +36,28 @@ Things you may want to cover:
 | first_name                 | string     | null: false               |
 | last_name_reading          | string     | null: false               |
 | first_name_reading         | string     | null: false               |
-| buy_id                     | string     | null: false               |
 
 ### Association
 - has_many :items
 - has_many :buys
+- has_many :addresses
 
 ## itemsテーブル
 
-| Column            | Type       | Options     |
-| ----------------- | ---------- | ----------- |
-| explanation       | string     | null: false |
-| category_id       | integer    | null: false |
-| status_id         | integer    | null: false |
-| postage_id        | integer    | null: false |
-| address_id        | integer    | null: false |
-| number_of_days_id | integer    | null: false |
-| price             | integer    | null: false |
+| Column            | Type       | Options                        |
+| ----------------- | ---------- | ------------------------------ |
+| product_name      | string     | null: false                    |
+| explanation       | integer    | null: false                    |
+| category_id       | integer    | null: false                    |
+| status_id         | integer    | null: false                    |
+| postage_id        | integer    | null: false                    |
+| address_id        | integer    | null: false                    |
+| number_of_days_id | integer    | null: false                    |
+| price             | integer    | null: false, foreign_key: true |
 
 ### Association
-- has_one :buys
-- belongs_to :users
+- has_one :buy
+- belongs_to :user
 
 ## buysテーブル
 
@@ -68,18 +69,20 @@ Things you may want to cover:
 ### Association
 - belongs_to :user
 - belongs_to :item
+- has_one :address
 
 ## addressesテーブル
 
 | Column         | Type       | Options           |
 | -------------- | ---------- | ----------------- |
 | post_code      | string     | null: false       |
-| address_id     | string     | null: false       |
+| address_id     | integer    | null: false       |
 | city           | string     | null: false       |
 | street_address | string     | null: false       |
-| building       | string     | foreign_key: true |
+| building       | string     |                   |
 | phone_number   | string     | null: false       |
-| card           | string     | null: false       |
+| buy_id         | string     | null: false       |
 
 ### Association
-- belongs_to :users
+- belongs_to :user
+- belongs_to :buy
