@@ -40,20 +40,20 @@ Things you may want to cover:
 ### Association
 - has_many :items
 - has_many :buys
-- has_many :addresses
 
 ## itemsテーブル
 
 | Column            | Type       | Options                        |
 | ----------------- | ---------- | ------------------------------ |
 | product_name      | string     | null: false                    |
-| explanation       | integer    | null: false                    |
+| explanation       | string     | null: false                    |
 | category_id       | integer    | null: false                    |
 | status_id         | integer    | null: false                    |
 | postage_id        | integer    | null: false                    |
 | address_id        | integer    | null: false                    |
-| number_of_days_id | integer    | null: false                    |
+| number_of_day_id  | integer    | null: false                    |
 | price             | integer    | null: false, foreign_key: true |
+| user_id           | integer    | null: false, foreign_key: true |
 
 ### Association
 - has_one :buy
@@ -84,5 +84,4 @@ Things you may want to cover:
 | buy_id         | string     | null: false       |
 
 ### Association
-- belongs_to :user
 - belongs_to :buy
