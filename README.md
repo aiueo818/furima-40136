@@ -46,14 +46,14 @@ Things you may want to cover:
 | Column            | Type       | Options                        |
 | ----------------- | ---------- | ------------------------------ |
 | product_name      | string     | null: false                    |
-| explanation       | string     | null: false                    |
+| explanation       | text       | null: false                    |
 | category_id       | integer    | null: false                    |
 | status_id         | integer    | null: false                    |
 | postage_id        | integer    | null: false                    |
-| address_id        | integer    | null: false                    |
+| shipping_id       | integer    | null: false                    |
 | number_of_day_id  | integer    | null: false                    |
-| price             | integer    | null: false, foreign_key: true |
-| user_id           | integer    | null: false, foreign_key: true |
+| price             | integer    | null: false                    |
+| user              | references | null: false, foreign_key: true |
 
 ### Association
 - has_one :buy
@@ -73,15 +73,15 @@ Things you may want to cover:
 
 ## addressesテーブル
 
-| Column         | Type       | Options           |
-| -------------- | ---------- | ----------------- |
-| post_code      | string     | null: false       |
-| address_id     | integer    | null: false       |
-| city           | string     | null: false       |
-| street_address | string     | null: false       |
-| building       | string     |                   |
-| phone_number   | string     | null: false       |
-| buy_id         | string     | null: false       |
+| Column         | Type       | Options                        |
+| -------------- | ---------- | ------------------------------ |
+| post_code      | string     | null: false                    |
+| shipping_id    | integer    | null: false                    |
+| city           | string     | null: false                    |
+| street_address | string     | null: false                    |
+| building       | string     |                                |
+| phone_number   | string     | null: false                    |
+| buy            | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :buy
