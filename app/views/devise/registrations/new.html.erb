@@ -51,6 +51,17 @@
       安心・安全にご利用いただくために、お客さまの本人情報の登録にご協力ください。他のお客さまに公開されることはありません。
     </p>
   </div>
+
+  <% if @user.errors.any? %>
+  <div class="error-alert">
+    <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li class='error-message'><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
   <div class="form-group">
     <div class='form-text-wrap'>
       <label class="form-text">お名前(全角)</label>
