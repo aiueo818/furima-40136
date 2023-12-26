@@ -1,8 +1,7 @@
 <%= render "shared/second-header"%>
 
-<%# 「モデル名」にはUserモデルであれば@userを渡しましょう。「新規登録機能へのパス」は、devise導入後にrails routesを実行してdevise/registrations#createへのパスを確認し、記載してください。 %>
 <%= form_with model: @user, url: user_registration_path, class: 'registration-main', local: true do |f| %>
-<%# //「モデル名」にはUserモデルであれば@userを渡しましょう。「新規登録機能へのパス」は、devise導入後にrails routesを実行してdevise/registrations#createへのパスを確認し、記載してください。 %>
+
 <div class='form-wrap'>
   <div class='form-header'>
     <h1 class='form-header-text'>
@@ -10,9 +9,7 @@
     </h1>
   </div>
 
-  <%# インスタンスを渡して、エラー発生時にメッセージが表示されるようにしましょう。%>
-  <%# render 'shared/error_messages', model: f.object %>
-  <%# //インスタンスを渡して、エラー発生時にメッセージが表示されるようにしましょう。%>
+  <%= render 'shared/error_messages', model: f.object %>
 
   <div class="form-group">
     <div class='form-text-wrap'>
@@ -51,16 +48,6 @@
       安心・安全にご利用いただくために、お客さまの本人情報の登録にご協力ください。他のお客さまに公開されることはありません。
     </p>
   </div>
-
-  <% if @user.errors.any? %>
-  <div class="error-alert">
-    <ul>
-      <% @user.errors.full_messages.each do |message| %>
-        <li class='error-message'><%= message %></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
 
   <div class="form-group">
     <div class='form-text-wrap'>
