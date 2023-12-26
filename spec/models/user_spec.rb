@@ -6,10 +6,12 @@ RSpec.describe User, type: :model do
   end
 
   describe 'ユーザー管理機能' do
+    context '新規登録ができる時' do
     it 'nicknameとemail、passwordとpassword_confirmationが存在すれば登録できる' do
       expect(@user).to be_valid
     end
-
+  end
+  context '新規登録ができない時' do
     it 'nicknameが空では登録できない' do
       @user.nickname = ''
       @user.valid?
@@ -115,4 +117,5 @@ RSpec.describe User, type: :model do
       expect(@user.errors.full_messages).to include("Password には英字と数字の両方を含めて設定してください")
     end
   end
+end
 end
