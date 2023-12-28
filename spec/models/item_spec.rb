@@ -49,15 +49,30 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Price can't be blank")
       end
-      it 'priceが300~9999999以外では保存できない' do
+      it 'priceが300以下では保存できない' do
         @item.price = '1'
         @item.valid?
         expect(@item.errors.full_messages).to include("Price must be greater than or equal to 300")
+      end
+      it 'priceが9999999以上では保存できない' do
+        @item.price = '999999999'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price must be less than or equal to 9999999")
       end
       it 'priceが全角では保存できない' do
         @item.price = '２'
         @item.valid?
         expect(@item.errors.full_messages).to include("Price is not a number")
+      end
+      it 'imageが空では保存できない' do
+        @item.image = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Image can't be blank")
+      end
+      it 'userが紐付いていないと保存できない' do
+        @item.user = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include('User must exist')
       end
     end
   end
