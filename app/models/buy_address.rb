@@ -2,15 +2,20 @@ class BuyAddress
   include ActiveModel::Model
   attr_accessor :user, :item_id, :post_code, :shipping_id, :city, :street_address, :building, :phone_number, :buy, :user_id, :token
 
-  validates :shipping_id, :city, :street_address, :item_id, :token, presence: true
-
-  with_options presence: true, format: { with: /\A\d{3}[-]\d{4}\z/, message: 'はハイフンの入力が必要です' } do
+  with_options presence: true, format: { with: /\A\d{3}[-]\d{4}\z/} do
     validates :post_code
   end  
 
-  with_options presence: true, format: { with: /\A\d{10,11}\z/, message: 'はハイフン無しで入力してください' } do
+  with_options presence: true, format: { with: /\A\d{10,11}\z/ } do
     validates :phone_number
   end  
+
+  with_options presence:true do
+    validates :shipping_id, :city, :street_address, :item_id, :token, :user_id
+  end
+
+      #ジャンルの選択が「---」の時は保存できないようにする
+      validates :shipping_id, numericality: { other_than: 1 , message: "can't be blank"}
 
   def save
     buy = Buy.create(item_id: item_id,user_id: user_id)
