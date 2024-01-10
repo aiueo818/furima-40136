@@ -4,7 +4,10 @@ class BuysController < ApplicationController
   def index
     gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
     @buy_address = BuyAddress.new
-
+    
+    if @item.buy != nil
+      redirect_to root_path
+    end
     if @item.buy != nil
       redirect_to root_path
     end
@@ -28,7 +31,7 @@ class BuysController < ApplicationController
   private
 
   def buy_params
-    params.require(:buy_address).permit(:post_code, :shipping_id, :city, :street_address, :building, :phone_number, :buy).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
+    params.require(:buy_address).permit(:post_code, :shipping_id, :city, :street_address, :building, :phone_number).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
   end
 
   def pay_item

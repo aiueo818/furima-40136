@@ -1,6 +1,6 @@
 class BuyAddress
   include ActiveModel::Model
-  attr_accessor :user, :item_id, :post_code, :shipping_id, :city, :street_address, :building, :phone_number, :buy, :user_id, :token
+  attr_accessor :item_id, :post_code, :shipping_id, :city, :street_address, :building, :phone_number, :user_id, :token
 
   with_options presence: true, format: { with: /\A\d{3}[-]\d{4}\z/} do
     validates :post_code
