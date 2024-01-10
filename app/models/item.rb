@@ -5,7 +5,7 @@ class Item < ApplicationRecord
   belongs_to :postage
   belongs_to :shipping
   belongs_to :number_of_day
-  #has_one :buy
+  has_one :buy
   belongs_to :user
   has_one_attached :image
 
