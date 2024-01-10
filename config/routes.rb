@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   get 'sessions/destroy'
   devise_for :users
   root to: 'items#index'
-  resources :items
+  resources :items do
+   resources :buys
+  end
 
 end
