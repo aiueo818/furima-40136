@@ -83,9 +83,9 @@ group :development do
   gem 'capistrano3-unicorn'
 end
 
-#group :production do
+group :production do
   gem 'pg'
-#end
+end
 
 gem 'devise'
 
